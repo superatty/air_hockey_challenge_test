@@ -105,7 +105,7 @@ if __name__ == '__main__':
 
     print("------------------------------------------------------")
     print("These variable will be parsed from env_info:")
-    print("agent_load.env_info.keys()s: ", agent_load.env_info.keys())
+    print("agent_load.env_info.keys(): ", agent_load.env_info.keys())
     print("agent_load.agent_id: ", agent_load.agent_id)
     print("agent_load.robot_model: ", agent_load.robot_model)
     print("agent_load.robot_data: ", agent_load.robot_data)

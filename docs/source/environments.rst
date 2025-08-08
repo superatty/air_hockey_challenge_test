@@ -115,8 +115,8 @@ convenience.
 .. code-block:: python
 
     env_info = {
-        "env_name": str,                        # Name fo the environment
-        "n_agents": 1,                          # Number of Agents, [1, 2]
+        "env_name": str,                        # Name of the environment
+        "n_agents": int,                          # Number of Agents, [1, 2]
         "dt": 0.02,                             # Delta time between two control signal
         "puck_pos_ids": list(int),              # Observation's indices the puck's position
         "puck_vel_ids": list(int),              # Observation's indices the puck's velocity
@@ -142,9 +142,9 @@ convenience.
 
         # Specifications of the Robot
         "robot": {
-            "n_joints": 3,                      # Number of robot's joint, [3, 7]
+            "n_joints": 7,                      # Number of robot's joints
             "base_frame": list(ndarray(4, 4)),  # The transformation matrix of the base frames
-            "ee_desired_height": 0.1,           # The height of the end-effector w.r.t base frame
+            "ee_desired_height": 0.1645,           # The height of the end-effector w.r.t base frame
             "joint_pos_limit": ndarray(2, N),   # The lower and upper limits of joint position
             "joint_vel_limit": ndarray(2, N),   # The lower and upper limits of joint velocity
             "joint_acc_limit": ndarray(2, N),   # The lower and upper limits of joint acceleration

@@ -26,36 +26,3 @@ The available methods are:
 
 
 .. literalinclude:: examples/save_load_agent_example.py
-
-AgentBase
----------
-``air_hockey_challenge.framework.agent_base``
-
-.. autoclass:: air_hockey_challenge.framework.agent_base.AgentBase
-    :noindex:
-
-    .. automethod:: __init__
-        :noindex:
-    .. automethod:: reset
-        :noindex:
-    .. automethod:: draw_action
-        :noindex:
-    .. automethod:: get_puck_state
-        :noindex:
-    .. automethod:: get_joint_state
-        :noindex:
-    .. automethod:: get_puck_pos
-        :noindex:
-    .. automethod:: get_puck_vel
-        :noindex:
-    .. automethod:: get_joint_pos
-        :noindex:
-    .. automethod:: get_joint_vel
-        :noindex:
-    .. automethod:: get_ee_pose
-        :noindex:
-    .. automethod:: save
-            :noindex:
-    .. automethod:: load_agent
-            :noindex:
-
