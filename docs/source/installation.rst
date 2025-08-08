@@ -40,7 +40,7 @@ To verify that everything works you can run our example hit agent:
     If you want to use Pytorch with GPU for training, please:
 
     #. Uninstall torch
-    #. Install GPU compatible torch please follow the `pytorch instructions <https://pytorch.org/get-started/locally/>`_.
+    #. Install GPU compatible torch. Please follow the `pytorch instructions <https://pytorch.org/get-started/locally/>`_.
 
 Install JAX
 ~~~~~~~~~~~~
@@ -160,7 +160,7 @@ To exit the container press ``CTRL + d``, this will detach the terminal and stop
 
 A few tips for docker development:
 
-* The 2023-challenge folder in the container is synced with the your host file system in both directions. You can
+* The 2025-challenge folder in the container is synced with the your host file system in both directions. You can
   develop your solution locally.
 
 * Make sure all dependencies are installed in the submitted docker image.

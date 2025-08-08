@@ -4,7 +4,7 @@ from air_hockey_agent.agent_builder import build_agent
 from pathlib import Path
 import yaml
 
-# Default path for agent_config have to adjust to your own path. Assumes script is in 2023-challenge/file.py
+# Default path for agent_config have to adjust to your own path. Assumes script is in 2025-challenge/file.py
 agent_config_1_path = Path(__file__).parent.joinpath("air_hockey_agent/agent_config.yml")
 
 # For example use the same config for both agents
