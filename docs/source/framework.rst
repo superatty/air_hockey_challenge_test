@@ -52,7 +52,7 @@ To start the evaluation locally
 
 .. code-block:: console
 
-    $ python run.py -r -e 3dof-hit --n_cores 1 --n_episodes 1
+    $ python run.py -r -e hit --n_cores 1 --n_episodes 1
 
 Note that in the remote evaluation, you need to put agent related arguments in ``air_hockey_agent/agent_config.yml``.
 The evaluation related arguments will be overwritten.

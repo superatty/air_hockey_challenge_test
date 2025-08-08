@@ -20,13 +20,13 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Robot Air Hockey Challenge'
-copyright = '2023, Puze Liu'
-author = 'Puze Liu'
+copyright = '2025, Atalay Donat'
+author = 'Atalay Donat'
 
 # The short X.Y version
-version = '2023'
+version = '2025'
 # The full version, including alpha/beta/rc tags
-release = '2023.1'
+release = '2025.1'
 
 # -- General configuration ---------------------------------------------------
 
@@ -47,7 +47,8 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx_rtd_theme',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

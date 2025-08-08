@@ -70,7 +70,7 @@ class DummyAgent(AgentBase):
 
 
 if __name__ == '__main__':
-    env = AirHockeyChallengeWrapper("3dof-hit")
+    env = AirHockeyChallengeWrapper("hit")
 
     # Construct Agent
     args = {'value': 1.1}

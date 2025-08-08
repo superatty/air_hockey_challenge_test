@@ -54,7 +54,7 @@ It will first build your docker image and takes several minutes. You will see ou
      => CACHED [eval 2/5] WORKDIR /src                                                                                                                                                                    0.0s
      => CACHED [eval 3/5] RUN apt-get update && apt-get -y install ffmpeg libsm6 libxext6 &&     rm -rf /var/cache/apt/* /var/lib/apt/lists/*                                                             0.0s
      => CACHED [eval 4/5] RUN pip install -U pip      && pip install --no-cache-dir     --no-index     -r /wheels/requirements.txt     -f /wheels     && rm -rf /wheels                                   0.0s
-     => [eval 5/5] COPY . 2025-challenge/                                                                                                                                                                 3.1s
+     => [eval 5/5] COPY . 2023-challenge/                                                                                                                                                                 3.1s
      => exporting to image                                                                                                                                                                                1.7s
      => => exporting layers                                                                                                                                                                               1.7s
      => => writing image sha256:fb50bd8114ee1c0b7a618a1ff52396a17c8238b50967faf29b857fc42b6a2d1f                                                                                                          0.0s

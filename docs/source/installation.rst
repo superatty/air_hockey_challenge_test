@@ -24,7 +24,7 @@ You can create a ``conda`` environment and install all dependencies
 .. code-block:: console
 
     $ cd air_hockey_challenge
-    $ conda create -y -n challenge python=3.8
+    $ conda create -y -n challenge python=3.12
     $ conda activate challenge
     $ pip install -r requirements.txt
     $ pip install -e .
@@ -33,7 +33,7 @@ To verify that everything works you can run our example hit agent:
 
 .. code-block:: console
 
-    $  python run.py -r -e 3dof-hit --example hit-agent --n_cores 1 --n_episodes 5
+    $  python run.py -r -e hit --example hit-agent --n_cores 1 --n_episodes 5
 
 .. note::
     Note that we pre-installed the CPU version of torch. The evaluation is also done purely on CPU.
@@ -42,6 +42,16 @@ To verify that everything works you can run our example hit agent:
     #. Uninstall torch
     #. Install GPU compatible torch please follow the `pytorch instructions <https://pytorch.org/get-started/locally/>`_.
 
+Install JAX
+~~~~~~~~~~~~
+
+If you want to use JAX for training with CUDA 12, you can install it with the following command:
+
+.. code-block:: console
+
+    $ pip install -U "jax[cuda12]"
+
+Refer to the `JAX installation guide <https://docs.jax.dev/en/latest/installation.html>`_ for more details.
 
 Build the Docker Image
 ----------------------
@@ -143,14 +153,14 @@ To verify that everything works you can run our example ``hit-agent``
 
 .. code-block:: console
 
-    $ python run.py --n_cores 1 -e 3dof-hit --example hit-agent --n_episodes 5
+    $ python run.py --n_cores 1 -e hit --example hit-agent --n_episodes 5
 
 If you also set up the UI, you can add the ``-r`` flag to the command which renders the simulator.
 To exit the container press ``CTRL + d``, this will detach the terminal and stop the container.
 
 A few tips for docker development:
 
-* The 2025-challenge folder in the container is synced with the your host file system in both directions. You can
+* The 2023-challenge folder in the container is synced with the your host file system in both directions. You can
   develop your solution locally.
 
 * Make sure all dependencies are installed in the submitted docker image.

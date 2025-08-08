@@ -1,23 +1,22 @@
-.. _qualifying:
+.. _old_qualifying:
 
-Qualifying
+Old Qualifying
 ==========
 
-In this stage, you will train an agent using simulation environments with a 7dof KUKA IIWA robot.
-A baseline agent will be provided to help you get started.
-Along with an environment to play the whole game, we will provide three different environments
-to train your agent. The environments are designed to simulate different scenarios that a robot might encounter
-during the game. The environments are:
+In this stage, you will solve the three main subtasks with a 7dof KUKA IIWA robot. In the simulation, the collision
+between the robot and the table are disabled. Thus your solution must keep the mallet (Robot's End Effector)
+at an appropriate height.
 
-- **Hit**: The robot needs to hit the puck to the opponent's goal.
+.. note::
+   During this phase, we will make different modifications in the environment to simulate real-world challenges.
+   Participants will develop their robotic agents in an ideal environment. In order to deal with theses challenges,
+   we encourage the participant to submit their agent, collect the dataset and improve the robustness of your agent.
 
-- **Defend**: The robot needs to stop the puck from getting scored.
+Installation
+------------
+1. If you did not join the **warm-up** stage, you can finish the :ref:`Installation <installation>` instruction.
 
-- **Prepare**: The robot needs to control the puck to a good hit position.
-
-The goal is to develop a robust agent that can play air hockey while satisfying the :ref:`constraints <constraints>`.
-In the simulation, the collision between the robot and the table are disabled.
-Thus your solution must keep the mallet (Robot's End Effector) at an appropriate height.
+2. If you have already cloned the repo, you can checkout to the ``qualifying`` branch and merge your local changes.
 
 Environment Specifications
 --------------------------
@@ -41,43 +40,15 @@ Here we list the some useful information about the environment.
 +-----------------------------------------+---------------------------------------------------------------------+
 | **Environment Specifications**          |                                                                     |
 +-----------------------------------------+---------------------------------------------------------------------+
-| Environments                            | ``tournament``, ``hit``, ``defend``, ``prepare``                    |
+| Environments                            | ``7dof-hit``, ``7dof-defend``, ``7dof-prepare``                     |
 +-----------------------------------------+---------------------------------------------------------------------+
 | Initial Robot Position (fixed)          | [ 0, -0.1960, 0, -1.8436, 0, 0.9704  0]                             |
 +-----------------------------------------+---------------------------------------------------------------------+
 | Initial Robot Velocity                  | 0                                                                   |
 +-----------------------------------------+---------------------------------------------------------------------+
 
-**Tournament**: ``tournament``
-~~~~~~~~~~~~~~~~~~~~~
 
-This environment is a complete game of air hockey. The puck is initialized randomly at one side of the table.
-
-**Initialization Range**:
-
-.. list-table::
-   :widths: 20 49
-   :header-rows: 0
-   :align: center
-
-   * - :math:`x`
-     - [0.81, 1.31]
-   * - :math:`y`
-     - [-0.39, 0.39]
-   * - linear speed (m/s)
-     - 0
-   * - angular speed (rad/s)
-     - 0
-
-**Termination Criterion**: 
-- The puck is stuck on one side for 15 seconds.
-- The puck is scored.
-- The puck is stuck in the middle.
-
-.. image:: ../assets/7dof-tournament.gif
-  :width: 400
-
-**Hit**: ``hit``
+**Hit**: ``7dof-hit``
 ~~~~~~~~~~~~~~~~~~~~~
 
 In this task, the opponent moves in a predictable pattern. The puck is initialized randomly
@@ -108,7 +79,7 @@ with a small velocity. The task is to hit the puck to the opponent's goal.
 
 ----
 
-**Defend**: ``defend``
+**Defend**: ``7dof-defend``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The puck is randomly initialized on the right side of the table with a random velocity heading left.
@@ -141,7 +112,7 @@ the puck speed drops below the threshold.
 
 ----
 
-**Prepare**: ``prepare``
+**Prepare**: ``7dof-prepare``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The puck is initialized close to the table's boundary and is unsuitable for hitting. The task is to control
@@ -171,23 +142,6 @@ or the puck is on the opponent's side of the table.
 
 **Success Criterion**: The puck is in the range where hits can be made and the longitudinal speed is
 below the threshold.
-
-MJX
-----
-
-`MJX <https://mujoco.readthedocs.io/en/stable/mjx.html>`_ is a high-performance physics simulation backend developed 
-to leverage GPU acceleration for faster and more efficient training.
-It is a reimplementation of the MuJoCo physics engine in JAX, a powerful numerical computing library 
-designed for high-performance machine learning.
-We provide the environments additionally in MJX, which allows for faster training and evaluation of your agents.
-There are two main things to note about the MJX environments:
-
-- The MJX environments take an argument ``batch_size`` which specifies the number of parallel environments to run.
-
-- In the MuJoCo environments, the puck and the mallets are cylinder objects, while in the MJX environments, they are capsule objects.
-  This is due to the limitations of MJX: `Collisions between cylinder and mesh objects are not supported. <https://mujoco.readthedocs.io/en/stable/mjx.html#feature-parity>`_
-  Please note that the evaluation on the cloud server will be done using the MuJoCo environments.
-
 
 Action Interface
 ----------------
@@ -222,9 +176,48 @@ of the command should be [2, N_joints].
 should include desired [position, velocity, acceleration]. The shape of the command should be [20, 3, N_joints].
 
 
+Constraints
+-----------
+
+For 7 DoF Environments, additional constraints are added that ensures positions of the elbow and the wrist are
+above a threshold. The updated constraints table is listed here
+
+.. list-table::
+   :widths: 20 10 10 50
+   :header-rows: 1
+
+   * - Class Name
+     - Key
+     - Output Dim
+     - Description
+   * - JointPositionConstraint
+     - "joint_pos_constr"
+     - 2 * num_joints
+     - :math:`q_l < q_{cmd} < q_u`
+   * - JointVelocityConstraint
+     - "joint_vel_constr"
+     - 2 * num_joints
+     - :math:`\dot{q}_l < \dot{q}_{cmd} < \dot{q}_u`
+   * - EndEffectorConstraint
+     - "ee_constr"
+     - 5
+     - :math:`l_x < x_{ee},`
+
+       :math:`l_y < y_{ee} < u_y,`
+
+       :math:`z_{ee} > \mathrm{table\,height - tolerance}`,
+
+       :math:`z_{ee} < \mathrm{table\, height + tolerance}`.
+   * - LinkConstraint (7DoF Robot Only)
+     - "link_constr"
+     - 2
+     - :math:`z_{elbow} > 0.25`,
+
+       :math:`z_{wrist} > 0.25`
+
 Evaluation
 ----------
 
 To evaluate your agent in the cloud server, please follow the :ref:`submission` instruction.
 The environments on the cloud server slightly differs to the public ones. It has additional challenges
-which occur in the real world. These challenges might be a model gap, error prone observations, etc.
+which occure in the real world. These challenge might be a model gap, error prone observations, etc.  

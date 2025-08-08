@@ -52,11 +52,7 @@ Here we list all important specifications about the environment:
    * - **Control Command**
      - Desired Joint Position / Velocity
    * - **Available Environments**
-     - **Warm Up**: ``3dof-hit``, ``3dof-defend``
-   * -
-     - **Qualifying**: ``7dof``, ``7dof-hit``, ``7dof-defend``, ``7dof-prepare``
-   * -
-     - **Tournament**: ``tournament``
+     - **Qualifying**: ``hit``, ``defend``, ``prepare``, ``tournament``
 
 Air Hockey Table
 ~~~~~~~~~~~~~~~~
@@ -66,14 +62,14 @@ The dimensions of the Table, Puck and Mallet are specified in the following figu
 .. image:: ../assets/air_hockey_table.png
   :width: 80%
 
-Planar Robot - 3DoF
-~~~~~~~~~~~~~~~~~~~
+.. Planar Robot - 3DoF
+.. ~~~~~~~~~~~~~~~~~~~
 
-The base of the planar robot is located at [-1.51, 0., -0.1], the orientation is
-aligned with the world's frame.
+.. The base of the planar robot is located at [-1.51, 0., -0.1], the orientation is
+.. aligned with the world's frame.
 
-.. image:: ../assets/3dof_planar_env.png
-  :width: 80%
+.. .. image:: ../assets/3dof_planar_env.png
+..   :width: 80%
 
 KUKA iiwa14 LBR Robot
 ~~~~~~~~~~~~~~~~~~~~~
@@ -101,10 +97,8 @@ You can construct the environment by
 
     from air_hockey_challenge.framework import AirHockeyChallengeWrapper
 
-    # Available Environments [3dof, 3dof-hit, 3dof-defend],
-    # [7dof, 7dof-hit, 7dof-defend, 7dof-prepare, tournament] will be released at the beginning of
-    # the stage.
-    env = AirHockeyChallengeWrapper("3dof-hit")
+    # Available Environments [hit, defend, prepare, tournament]
+    env = AirHockeyChallengeWrapper("hit")
 
     print(env.env_info)
 

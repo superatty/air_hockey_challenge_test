@@ -1,19 +1,12 @@
-.. _tournament:
+.. _simulated_tournament:
 
-Tournament
+Simulated Tournament
 ==========
 
 In this stage, you will develop a whole game playing agent to compete with the agent from other participants.
 
-Installation
-------------
-
-1. If you have already cloned the repo, you can pull the ``main`` or ``tournament`` branch from the `Github repo <https://github.com/AirHockeyChallenge/air_hockey_challenge>`_.
-
-2. If you have not cloned the repo. Please finish the :ref:`Installation <installation>` instruction.
-
 Launch Tournament Locally
-~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 You can run a game of two baseline agents playing against each other.
 
@@ -31,6 +24,7 @@ To change the opponent to an arbitrary agent you can use the following script
 
 .. literalinclude:: examples/launch_tournament.py
 
+..  <<— make sure there’s an empty line here! >>
 
 Evaluation
 ----------
@@ -46,15 +40,6 @@ To test if the docker communication works properly with your agent. You can run
     $ python scripts/docker_tournament_test.py
 
 This script will build a docker image of the current codebase and start a tournament with this image.
-
-Preparation Phase
------------------
-
-1. The preparation phase begins on **August 14th** and ends on **October 6th**.
-
-2. During the preparation phase, you can submit your solution to the server and evaluate it with the baseline agent.
-
-3. In this phase, we organize a **Friendship Game** for participants. Participants can set the ``friendship_game: True`` in ``agent_config.yml``. We will automatically set a game if two participants are available. A video demo will be published on the website. **No dataset for friendship games will be available**.
 
 
 Rules

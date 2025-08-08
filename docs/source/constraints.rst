@@ -39,7 +39,7 @@ We also list all of the available constraint here:
        :math:`z_{ee} > \mathrm{table\,height - tolerance}`,
 
        :math:`z_{ee} < \mathrm{table\, height + tolerance}`.
-   * - LinkConstraint (7DoF Robot Only)
+   * - LinkConstraint
      - "link_constr"
      - 2
      - :math:`z_{elbow} > 0.25`,

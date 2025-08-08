@@ -1,6 +1,6 @@
-.. _warm_up:
+.. _old_warm_up:
 
-Warm Up
+Old Warm Up
 =======
 
 In this stage, you will handle two tasks with a simplified 3-DoF robot. The robot is set

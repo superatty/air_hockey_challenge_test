@@ -1,6 +1,6 @@
 from air_hockey_challenge.framework import AirHockeyChallengeWrapper
 
-env = AirHockeyChallengeWrapper('3dof-hit')
+env = AirHockeyChallengeWrapper('hit')
 
 # Setup the environment
 obs = env.reset()
