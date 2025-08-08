@@ -130,23 +130,6 @@ The following are the constraints considered in the challenge:
     * Penalty Points 0.5:
         0.1s >= maximum computation time > 0.02s
 
-#. Jerk (0):
-    .. important::
-        This Metric is no longer used in this competition.
-
-    It is desirable to have a smooth trajectory, which will reduce the tear and wear of
-    of the actuator. If the average jerk at are above the threshold, the deployability
-    penalty will accumulate 1 points. Cubic polynomial are used to interpolate the
-    trajectory between two consecutive commands. For each trajectory segment, the jerk
-    is a constant. However, the acceleration is in general not continuous between two
-    trajectory segments. The jerk is computed as
-
-    :math:`q'''(t) = q_{k}''' + b (q''_{k}(t) - q''_{k-1}(t))`
-
-    with :math:`q_k(t), q_{k-1}(t)` are the polynomials of at time :math:`t` with
-    :math:`k`-th and :math:`(k-1)`-th polynomial, respectively. :math:`(\cdot)''` and
-    :math:`(\cdot)'''` are acceleration and jerk, respectively.
-
 Leaderboard
 -----------
 

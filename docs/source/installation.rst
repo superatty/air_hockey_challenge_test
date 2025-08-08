@@ -45,7 +45,7 @@ To verify that everything works you can run our example hit agent:
 Install JAX
 ~~~~~~~~~~~~
 
-If you want to use JAX for training with CUDA 12, you can install it with the following command:
+If you want to use the MJX environments for training with CUDA 12, you can install it with the following command:
 
 .. code-block:: console
 
@@ -78,7 +78,7 @@ Prerequisite
         If you are using linux, please don't forget to do the `post-install <https://docs.docker.com/engine/install/linux-postinstall/>`_ procedure.
 
 2. Install NVIDIA Container Toolkit.
-    Our image is build based on the "nvidia/cuda:11.6.2-base-ubuntu20.04". The installation guide of the
+    Our image is build based on "nvidia/cuda:12.9.0-base-ubuntu20.04". The installation guide of the
     `NVIDIA Container Toolkit <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_
     can be found here.
 
