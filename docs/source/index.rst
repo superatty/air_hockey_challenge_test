@@ -46,7 +46,7 @@ The goal of this document is to provide a basic introduction to the challenge's 
 :ref:`Evaluation <evaluation>`, :ref:`Constraints <Constraints>`, and :ref:`submission`.
 
 For information about general rules, such as, registration and important dates,
-please see the `challenge website <https://https://sites.google.com/view/rahc-2023>`_.
+please see the `challenge website <https://air-hockey-challenge.robot-learning.net>`_.
 
 
 Contents
@@ -58,4 +58,3 @@ Contents
     getting_started
     qualifying
     simulated_tournament
-    api
