@@ -27,10 +27,13 @@ The key things to note are the following:
 
 - In the MuJoCo environments, the puck and the mallets are cylinder objects, while in the MJX environments, they are capsule objects. This is due to the limitations of MJX: `Collisions between cylinder and mesh objects are not supported. <https://mujoco.readthedocs.io/en/stable/mjx.html#feature-parity>`_
 
+  
 - To maximize performance with JAX, you should use ``jax.jit`` to compile both ``env.reset`` and ``env.step`` functions. This ensures that environment interactions are efficiently executed on supported hardware.
 
+  
 - Generating pseudorandom numbers in JAX is different from NumPy. Every JAX function that uses random numbers takes a random key as an argument. Providing the same key will yield the same output of the function. For reproducibility, you create an explicit random state using ``jax.random.PRNGKey`` and use ``jax.random.split`` to create a new key for each call and update the random state. More information can be found in the `JAX documentation <https://docs.jax.dev/en/latest/random-numbers.html>`_.
 
+  
 - Adding the following flags tells XLA to use Triton GEMM, which can improve steps per second by ~30% on some GPUs:
 
     .. code-block:: python
@@ -40,6 +43,7 @@ The key things to note are the following:
                     "--xla_gpu_enable_latency_hiding_scheduler=true "
             )
 
+  
 - If you encounter NaN values during training or evaluation, you can increase the matrix multiplication precision (with the trade-off of performance) by setting the following configuration:
 
     .. code-block:: python
@@ -48,4 +52,6 @@ The key things to note are the following:
 
     The possible values are 'default', 'high', and 'highest'.
 
+  
 - Rendering the MJX environments is not supported, so to render the environments, the MJX state is converted to a MuJoCo state, which takes some time. If you still want to render the MJX environments, it is suggested to save all the MJX states and then convert them to MuJoCo states after the simulation is done just like in the example above.
+
