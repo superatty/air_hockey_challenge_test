@@ -17,12 +17,10 @@ For the warmup phase we will evaluate the agent by running
 
 .. code-block:: python
 
-    python run.py --n_episodes 1000 -e 3dof -g phase-1
+    python run.py --n_episodes 1 --steps_per_game 45000 -e tournament -g phase-3
 
 That means that we load the default config file ``air_hockey_agent/agent_config.yml`` and overwrite the parameters
 related for evaluation. You can append your agent related parameters in the config file.
-
-For the qualifying phase the command of course changes to ``python run.py --n_episodes 1000 -e 7dof -g phase-2``.
 
 .. note::
 
@@ -48,15 +46,19 @@ The dataset is organized as follows:
 ::
 
     dataset_path
-    ├── envs
-    │   ├── computation_time.npy
-    │   ├── ee_constr.npy
-    │   ├── joint_pos_constr.npy
-    │   ├── joint_vel_constr.npy
-    │   ├── dataset.pkl
-    │   └── violations.json
-    ├── 3dof-defend
-    └── results.json
+    ├── qualifying
+    │   ├── eval-{datetime}
+    │   │   ├── out.log
+    │   │   ├── result_{team}.json
+    │   │   ├── Game_0
+    │   │   │   ├── computation_time.npy
+    │   │   │   ├── ee_constr.npy
+    │   │   │   ├── joint_pos_constr.npy
+    │   │   │   ├── joint_vel_constr.npy
+    │   │   │   ├── dataset.pkl
+    │   │   │   └── violations.json
+    └── tournament
+
 
 You can load the files as
 
@@ -78,11 +80,14 @@ To replay the dataset, you can call the function in the ``air_hockey_challenge/u
 Metric
 ------
 
-Each task is evaluated by 1000 episodes. We will compute two metrics in the evaluation:
+The agent is evaluated by playing against the baseline agent for 45000 steps. 
+We will compute two metrics in the evaluation:
 
 **Success Rate**: A success criterion is defined for each task. We will check if the task
 succeed when the episode terminates. Each episode can terminate because of two reasons:
-1. maximum number of steps reached; 2. No further interaction can be in the episodes.
+
+#. Maximum number of steps reached
+#. No further interaction can be in the episodes.
 
 **Deployability**: The deployability score will assess your agent in multiple
 aspects. Each metric will be assigned one or more penalty points depending on the level
@@ -105,6 +110,12 @@ The following are the constraints considered in the challenge:
     This constraint is very strict. As we use a high-gain tracking controller to improve the
     tracking performance. An infeasible command could potentially damage the table, end-effector
     , or robot actuator.
+
+#. Violations of the Elbow and Wrist Link Height Constraints (3):
+    The elbow and wrist link should remain high enough to avoid collision with the table.
+    The height of the elbow and wrist link can be computed as:
+
+    :math:`z_\mathrm{elbow} > 0.25, \quad z_\mathrm{wrist} > 0.25`
 
 #. Violations of the Joint Position Limit Constraints (2):
     The joint position should not exceed the position limits. In the real-robot, violations
@@ -135,17 +146,9 @@ Leaderboard
 
 We will categorize your agent into three categories based on the deployability penalty:
 
-
-.. list-table::
-   :widths: 30 30
-   :header-rows: 0
-
-   * - **Deployable**
-     - Penalty Score <= 500
-   * - **Improvable**
-     - 500 < Penalty Score <= 1500
-   * - **Non-deployable**
-     - 1500 < Penalty Score
+* Deployable
+* Improvable
+* Non-deployable
 
 The leaderboard is divided into three categories by ``Deployability``. Each
 category will be ranked separately according to ``Success Rate``. At each stage, we provide
