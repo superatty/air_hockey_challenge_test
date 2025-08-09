@@ -10,6 +10,7 @@ Getting Started
     installation
     framework
     environments
+    mjx
     agent
     constraints
     submission
