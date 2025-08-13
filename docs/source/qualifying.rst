@@ -53,6 +53,9 @@ Here we list the some useful information about the environment.
 
 This environment is a complete game of air hockey. The puck is initialized randomly at one side of the table.
 
+.. image:: ../assets/7dof-tournament.gif
+  :width: 400
+
 **Initialization Range**:
 
 .. list-table::
@@ -74,8 +77,7 @@ This environment is a complete game of air hockey. The puck is initialized rando
 - The puck is scored.
 - The puck is stuck in the middle.
 
-.. image:: ../assets/7dof-tournament.gif
-  :width: 400
+----
 
 **Hit**: ``hit``
 ~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +109,8 @@ with a small velocity. The task is to hit the puck to the opponent's goal.
 **Success Criterion**: The puck is in opponent's goal when the episode terminates.
 
 ----
-**Hit**: ``hit_single``
+
+**Hit Single**: ``hit_single``
 ~~~~~~~~~~~~~~~~~~~~~
 
 This task is similar to the ``hit`` task, but there is no opponent. 
