@@ -55,3 +55,31 @@ The key things to note are the following:
   
 - Rendering the MJX environments is not supported, so to render the environments, the MJX state is converted to a MuJoCo state, which takes some time. If you still want to render the MJX environments, it is suggested to save all the MJX states and then convert them to MuJoCo states after the simulation is done just like in the example above.
 
+- `state.pipeline_state` can be used as mjx.Data where you can access state information of the simulation.
+
+Wrappers
+------------
+
+There are a few wrappers that are provided by the Brax library to help you use the MJX environments:
+
+- `VmapWrapper`: 
+  This wrapper allows you to vectorize the environment, enabling you to run multiple instances of the environment in parallel. This is useful for training agents with multiple environments simultaneously.
+- `EpisodeWrapper`: 
+  This wrapper manages the episode lifecycle, including resetting the environment and keeping track of episode rewards and lengths.
+- `AutoResetWrapper`: 
+  This wrapper automatically resets the environment when an episode is done, simplifying the training loop.
+
+.. note::
+    To keep the state in our environments, we use `state.info` from Brax. Unfortunately `AutoResetWrapper` does not reset `state.info`, which means it cannot be used
+    in our environments. We provide a modified version in `baseline_agent.ppo_baseline_agent.utils.brax_wrapper`. It is also important to note that both our implementation
+    and the original implementation does not actually call the reset function, but just sets the state to the initial state for performance reasons. 
+    Please check `this discussion <https://github.com/google/brax/issues/167>`_ for more details.
+
+RL Training
+------------
+
+There are a few libraries that you can use to train your agents using reinforcement learning with off-the-shelf algorithms:
+
+- `Brax`: Please check `this notebook <https://colab.research.google.com/github/google-deepmind/mujoco/blob/main/mjx/tutorial.ipynb>`_ for an example on how to train with the Brax training pipeline
+
+- `SBX`: Stable Baselines Jax (SBX) is a proof of concept version of Stable-Baselines3 in Jax. Please check `baseline/ppo_baseline_agent` for training PPO models with SBX. 

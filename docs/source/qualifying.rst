@@ -158,9 +158,9 @@ the puck to move it into a good hit position. The puck is not allowed to cross t
    :align: center
 
    * - position
-     - [[0.71, 1.31], +/-[0.39105, 0.48535]] or
+     - [[0.71, 1.31], +/-[0.41105, 0.47535]] or
    * -
-     - [[0.57, 0.71], +/-[0.125, 0.48535]]
+     - [[0.57, 0.71], +/-[0.125, 0.47535]]
    * - linear speed (m/s)
      - 0.0
    * - angular speed (rad/s)
@@ -171,23 +171,6 @@ or the puck is on the opponent's side of the table.
 
 **Success Criterion**: The puck is in the range where hits can be made and the longitudinal speed is
 below the threshold.
-
-MJX
-----
-
-`MJX <https://mujoco.readthedocs.io/en/stable/mjx.html>`_ is a high-performance physics simulation backend developed 
-to leverage GPU acceleration for faster and more efficient training.
-It is a reimplementation of the MuJoCo physics engine in JAX, a powerful numerical computing library 
-designed for high-performance machine learning.
-We provide the environments additionally in MJX, which allows for faster training and evaluation of your agents.
-There are two main things to note about the MJX environments:
-
-- The MJX environments take an argument ``batch_size`` which specifies the number of parallel environments to run.
-
-- In the MuJoCo environments, the puck and the mallets are cylinder objects, while in the MJX environments, they are capsule objects.
-  This is due to the limitations of MJX: `Collisions between cylinder and mesh objects are not supported. <https://mujoco.readthedocs.io/en/stable/mjx.html#feature-parity>`_
-  Please note that the evaluation on the cloud server will be done using the MuJoCo environments.
-
 
 Action Interface
 ----------------
