@@ -107,6 +107,35 @@ with a small velocity. The task is to hit the puck to the opponent's goal.
 **Success Criterion**: The puck is in opponent's goal when the episode terminates.
 
 ----
+**Hit**: ``hit_single``
+~~~~~~~~~~~~~~~~~~~~~
+
+This task is similar to the ``hit`` task, but there is no opponent. 
+
+.. image:: ../assets/hit_single.gif
+  :width: 400
+
+**Initialization Range**:
+
+.. list-table::
+   :widths: 20 49
+   :header-rows: 0
+   :align: center
+
+   * - :math:`x`
+     - [0.81, 1.31]
+   * - :math:`y`
+     - [-0.39, 0.39]
+   * - linear speed (m/s)
+     - [0, 0.5]
+   * - angular speed (rad/s)
+     - [-2, 2]
+
+**Termination Criterion**: The puck is bounced back or scored.
+
+**Success Criterion**: The puck is in opponent's goal when the episode terminates.
+
+----
 
 **Defend**: ``defend``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,7 +158,7 @@ The objective is to stop the puck on the right side of the table and prevent it 
    * - :math:`y`
      - [-0.4, 0.4]
    * - linear speed (m/s)
-     - [1, 3]
+     - [1, 5]
    * - angular speed (rad/s)
      - [-10, 10]
 
